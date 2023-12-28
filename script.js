@@ -3,21 +3,25 @@ document.addEventListener('DOMContentLoaded', function() {
     const userNameInput = document.getElementById('userName');
     const greetingDiv = document.getElementById('greeting');
     const clearButton = document.getElementById('clearButton');
+
+    var storedName = localStorage.getItem('user');
+    
+    //var removeName = localStorage.removeItem('user');
   
     nameForm.addEventListener('submit', function(event) {
-      event.preventDefault();
       const userName = userNameInput.value;
       localStorage.setItem('user', userName);
-      displayGreeting();
+      displayGreeting(storedName);
     });
   
     clearButton.addEventListener('click', function() {
       localStorage.removeItem('user');
+      
       displayGreeting();
     });
   
-    function displayGreeting() {
-      const storedName = localStorage.getItem('user');
+    function displayGreeting(storedName) {
+      
       if (storedName) {
         greetingDiv.textContent = `Welcome back, ${storedName}!`;
       } else {
@@ -25,6 +29,6 @@ document.addEventListener('DOMContentLoaded', function() {
       }
     }
   
-    displayGreeting();
+    displayGreeting(storedName);
   });
   
